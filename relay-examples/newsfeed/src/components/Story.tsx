@@ -1,6 +1,8 @@
 import * as React from "react";
 import Card from "./Card";
+import { useFragment } from 'react-relay';
 import { graphql } from "relay-runtime";
+
 import Heading from "./Heading";
 import PosterByline, { type Props as PosterBylineProps } from "./PosterByline";
 import StorySummary from "./StorySummary";
@@ -20,6 +22,11 @@ type Props = {
 };
 
 export default function Story({ story }: Props): React.ReactElement {
+  const data = useFragment(
+    StoryFragment,
+    story,
+  );
+  console.log(data)
   return (
     <Card>
       <PosterByline poster={story.poster} />

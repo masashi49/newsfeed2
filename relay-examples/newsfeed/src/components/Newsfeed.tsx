@@ -11,7 +11,6 @@ export default function Newsfeed() {
   )
   const story = data.topStory
 
-  console.log(story)
 
   return (
     <div className="newsfeed">
