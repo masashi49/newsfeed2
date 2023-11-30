@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<98710f104c1b78f85d07280ae22e72dd>>
+ * @generated SignedSource<<9e0a1810feeee3089a038dda1246f15a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,15 +22,13 @@ export type NewsfeedQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "url",
-    "storageKey": null
-  }
-],
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "altText",
+  "storageKey": null
+},
 v1 = {
   "alias": null,
   "args": null,
@@ -116,6 +114,10 @@ return {
                 "storageKey": null
               },
               {
+                "kind": "TypeDiscriminator",
+                "abstractKey": "__isActor"
+              },
+              {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
@@ -129,7 +131,23 @@ return {
                 "kind": "LinkedField",
                 "name": "profilePicture",
                 "plural": false,
-                "selections": (v0/*: any*/),
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "url",
+                    "storageKey": null
+                  },
+                  (v0/*: any*/)
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "joined",
                 "storageKey": null
               },
               (v1/*: any*/)
@@ -143,7 +161,22 @@ return {
             "kind": "LinkedField",
             "name": "thumbnail",
             "plural": false,
-            "selections": (v0/*: any*/),
+            "selections": [
+              {
+                "alias": null,
+                "args": [
+                  {
+                    "kind": "Literal",
+                    "name": "width",
+                    "value": 400
+                  }
+                ],
+                "kind": "ScalarField",
+                "name": "url",
+                "storageKey": "url(width:400)"
+              },
+              (v0/*: any*/)
+            ],
             "storageKey": null
           },
           (v1/*: any*/)
@@ -153,12 +186,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a59a70bb2e872df5487a4840ed192c87",
+    "cacheID": "89464e0bfd9da683da2caf58e1f347e6",
     "id": null,
     "metadata": {},
     "name": "NewsfeedQuery",
     "operationKind": "query",
-    "text": "query NewsfeedQuery {\n  topStory {\n    ...StoryFragment\n    id\n  }\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    id\n  }\n  thumbnail {\n    url\n  }\n}\n"
+    "text": "query NewsfeedQuery {\n  topStory {\n    ...StoryFragment\n    id\n  }\n}\n\nfragment Image_Fragment on Image {\n  url\n  altText\n}\n\nfragment Image_Fragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment PosterByline_Fragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...Image_Fragment\n  }\n  joined\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterByline_Fragment\n    id\n  }\n  thumbnail {\n    ...Image_Fragment_OxVt3\n  }\n}\n"
   }
 };
 })();

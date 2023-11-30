@@ -26,7 +26,7 @@ export default function Newsfeed() {
 const NewsfeedQuery = graphql`
  query NewsfeedQuery{
   topStory {
-    ...StoryFragment 
+    ...StoryFragment
   }
  }
 `
